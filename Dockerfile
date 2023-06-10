@@ -32,11 +32,11 @@ RUN bundle install
 # install yarn
 RUN corepack enable
 RUN corepack prepare yarn@stable --activate
+RUN yarn init
 
 # install packages
 ADD package.json package.json
-ADD package-lock.json package-lock.json
-RUN npm install
+RUN yarn install
 
 # cleanup any temporary apt files.
 RUN rm -rf /var/lib/apt/lists/*\
@@ -44,9 +44,8 @@ RUN rm -rf /var/lib/apt/lists/*\
   && apt-get clean
 
 RUN rm Gemfile && rm Gemfile.lock
-RUN rm package.json && rm package-lock.json
+RUN rm package.json
 
 RUN gem env
 RUN node -v
-RUN npm -v
 RUN yarn -v

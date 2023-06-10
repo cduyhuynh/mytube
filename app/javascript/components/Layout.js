@@ -12,6 +12,7 @@ export default function({ children }) {
         <Header>
         </Header>
         <Content>
+          Content
           { children }
         </Content>
         
