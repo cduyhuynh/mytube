@@ -6,6 +6,7 @@ export default (
   <Router>
     <Routes>
       <Route path='/' exact element=<Layout /> />
+      <Route path='/share' exact element=<Layout /> />
     </Routes>
   </Router>
 );
