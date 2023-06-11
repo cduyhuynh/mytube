@@ -5,10 +5,10 @@
 # below each fixture, per the syntax in the comments below
 #
 one:
-  id: 1
-  email: 'mytube@gmail.com'
-  encrypted_password: <%= Devise::Encryptor.digest(User, 'mytube') %>
+  url: https://www.youtube.com/watch?v=5y_KJAg8bHI
+  user_id: <%= User.first.id %>
+two:
+  url: https://youtu.be/watch?v=5y_KJAg8bHI
+  user_id: <%= User.first.id %>
 # column: value
-#
-# two: {}
-# column: value
+

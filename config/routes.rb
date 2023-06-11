@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get :share, to: "videos#share"
   namespace :react, defaults: { format: 'json' } do
     namespace :videos do
+      get :index
       post :share
     end
   end

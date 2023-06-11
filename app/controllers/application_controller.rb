@@ -12,6 +12,6 @@ class ApplicationController < ActionController::Base
 
   private
   def allowed_url
-    ["/", "/login"]
+    ["/", "/login", "/react/videos/index"]
   end
 end
