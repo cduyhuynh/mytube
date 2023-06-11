@@ -6,7 +6,7 @@ class SessionsController < Devise::SessionsController
   def create
     sign_in "user", @user
     set_user_cookie
-    render json: {message: @message}, status: :ok
+    render json: {message: @message, user: {email: @user.email}}, status: :ok
   end
 
   def destroy

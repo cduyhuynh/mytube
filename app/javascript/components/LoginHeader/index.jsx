@@ -1,21 +1,18 @@
 import React from 'react';
-import { Layout, Form, Image, Input, Row, Col, Button } from 'antd';
-import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
+import { Layout, Form, Image, Input, Row, Col, Button, notification } from 'antd';
+import { login } from './redux';
 
 const { Header } = Layout;
 
 export default function(){
   const [form] = Form.useForm();
+  const { data, loading } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
 
-  const login = (e) => {
+  const submitLogin = (e) => {
     const values = form.getFieldsValue();
-    axios.post(`/login`, values)
-      .then(function(res){
-        console.log(res);
-      })
-      .catch(function(res){
-        console.log(res.response);
-      });
+    dispatch(login(values));
   }
 
   return (
@@ -34,7 +31,7 @@ export default function(){
               <Input.Password placeholder="password"/>
             </Form.Item>
             <Form.Item>
-              <Button type="primary" onClick={login}>
+              <Button type="primary" onClick={submitLogin}>
                 Login/Register
               </Button>
             </Form.Item>

@@ -16,6 +16,9 @@
     "react-dom": "^18.2.0",
     "react-redux": "^8.0.7",
     "react-router-dom": "^6.11.2",
+    "redux": "^4.2.1",
+    "redux-logger": "^3.0.6",
+    "redux-saga": "^1.2.3",
     "style-loader": "^2.0",
     "webpack": "^4.46",
     "webpack-cli": "^4.10"
