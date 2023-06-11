@@ -66,8 +66,3 @@ group :development do
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
 end
-
-group :test do
-  gem 'rspec-rails'
-  gem 'shoulda-matchers'
-end
