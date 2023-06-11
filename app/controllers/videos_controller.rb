@@ -7,7 +7,7 @@ class VideosController < ApplicationController
 
   def create
     service.create params[:url]
-    render json: { message: 'New url created' }, status: :ok
+    render json: { message: 'Your URL has been shared' }, status: :ok
   end
 
   protected
@@ -17,7 +17,7 @@ class VideosController < ApplicationController
 
   def verify_url
     unless params[:url].match?(valid_url_pattern)
-      render json: { message: 'Invalid Youtube url' }, status: :bad_request
+      render json: { message: 'Invalid Youtube URL' }, status: :bad_request
     end
   end
 end
