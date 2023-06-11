@@ -8,6 +8,12 @@ class ReactVideosControllerTest < ActionDispatch::IntegrationTest
     cookies["mytube_user"] = cookie_jar["mytube_user"]
   end
 
+  test "should only allow logged in user" do
+    url = 'https://www.youtube.com/watch?v=5y_KJAg8bHI'
+    post react_videos_share_url, params: {url: url}
+    assert_response 301
+  end
+
   test "should share new video successfully" do
     url = 'https://www.youtube.com/watch?v=5y_KJAg8bHI'
     set_request_cookie

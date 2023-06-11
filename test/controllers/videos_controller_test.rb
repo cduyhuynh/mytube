@@ -9,35 +9,13 @@ class VideosControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get share" do
+    set_request_cookie
     get share_url
     assert_response :success
   end
 
-  test "should share new video successfully" do
-    url = 'https://www.youtube.com/watch?v=5y_KJAg8bHI'
-    set_request_cookie
-    post share_url, params: {url: url}
-
-    existed = Video.exists?(url: url)
-    assert_response :success
-    assert existed
-  end
-
-  test "should share shorten Youtube url successfully" do
-    url = 'https://youtu.be/watch?v=5y_KJAg8bHI'
-    set_request_cookie
-    post share_url, params: {url: url}
-
-    existed = Video.exists?(url: url)
-    assert_response :success
-    assert existed
-  end
-
-  test "should share a valid Youtube video url" do
-    url = 'https://mytube.com/watch?v=5y_KJAg8bHI'
-    set_request_cookie
-    result = post share_url, params: {url: url}
-
-    assert_response :bad_request
+  test "should only allow logged in user" do
+    get share_url
+    assert_response 301
   end
 end
