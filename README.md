@@ -35,7 +35,7 @@ http://localhost:3000
 ```
 ### Run the test suite
 ```
-rspec
+rails test test/
 ```
 (BE/FS) Docker Deployment: Instructions for deploying the application using Docker, including building the Docker image and running containers (optional for Backend developer)
 ## Usage: A brief guide outlining how to use the application, including any specific features or functionality the reviewer should be aware of.

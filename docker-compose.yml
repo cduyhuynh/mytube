@@ -12,6 +12,7 @@ x-mytube: &webapp
   environment:
     DB_HOST: postgresql
     NODE_OPTIONS: --openssl-legacy-provider
+    NODE_ENV: development
 
 services:
   rails:
