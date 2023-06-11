@@ -1,15 +1,15 @@
 import React from 'react';
-import { Layout, Input, Row, Col, Button, Typography } from 'antd';
+import { Layout, Input, Row, Col, Button } from 'antd';
 import LoginHeader from './LoginHeader';
 
 const { Content, Footer } = Layout;
-const { Title, Text } = Typography;
 
-export default function() {
+export default function({content}) {
   return (
     <Layout>
       <LoginHeader />
       <Content>
+        {content}
       </Content>
     </Layout>
 )};
