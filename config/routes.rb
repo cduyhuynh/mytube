@@ -5,7 +5,11 @@ Rails.application.routes.draw do
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   get :share, to: "videos#share"
-  post :share, to: "videos#create"
+  namespace :react, defaults: { format: 'json' } do
+    namespace :videos do
+      post :share
+    end
+  end
   # Defines the root path route ("/")
   root "static#index"
 end

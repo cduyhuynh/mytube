@@ -7,7 +7,7 @@ const { Title } = Typography;
 export default function(){
   const [form] = Form.useForm();
   const share = (e) => {
-    axios.post(`/share`, form.getFieldsValue())
+    axios.post(`/react/videos/share`, form.getFieldsValue())
       .then((response) => {
         notification.success({
           message: 'Success',
@@ -51,9 +51,9 @@ export default function(){
           </Form.Item>
           <Form.Item wrapperCol={{
             offset: 8,
-            span: 16,
+            span: 8,
           }}>
-            <Button type="primary" onClick={share}>Share</Button>
+            <Button type="primary" size="large" onClick={share}>Share</Button>
           </Form.Item>
         </Form>
       </Col>
