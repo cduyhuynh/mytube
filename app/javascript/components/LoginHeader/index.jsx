@@ -16,7 +16,6 @@ export default function(){
   }
 
   const isLoggedIn = () => {
-    console.log(data);
     return Object.keys(data).length > 0;
   }
 
