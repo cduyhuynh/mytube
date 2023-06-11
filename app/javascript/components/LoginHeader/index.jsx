@@ -23,7 +23,9 @@ export default function(){
     <Header>
       <Row align="middle">
         <Col span={3}>
-          <Image height={"100%"} preview={false} src="/logo.png"/>
+          <a href="/">
+            <Image height={"100%"} preview={false} src="/logo.png"/>
+          </a>
         </Col>
 
         <Col offset={10} span={10}>
