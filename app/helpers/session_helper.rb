@@ -1,5 +1,5 @@
 module SessionHelper
   def set_user_cookie
-    cookies.encrypted["mytube_user"] = {value: current_user.email, expires: 6.months}
+    cookies.encrypted["mytube_user"] = {value: @user.email, expires: 7.days}
   end
 end
