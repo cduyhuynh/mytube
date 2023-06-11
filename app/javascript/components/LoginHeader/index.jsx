@@ -15,6 +15,11 @@ export default function(){
     dispatch(login(values));
   }
 
+  const isLoggedIn = () => {
+    console.log(data);
+    return Object.keys(data).length > 0;
+  }
+
   return (
     <Header>
       <Row align="middle">
@@ -23,19 +28,27 @@ export default function(){
         </Col>
 
         <Col offset={10} span={10}>
-          <Form form={form} layout="inline">
-            <Form.Item name="email" rules={[{required: true, message: 'Please input email!'}]}>
-              <Input placeholder="email"/>
-            </Form.Item>
-            <Form.Item name="password">
-              <Input.Password placeholder="password"/>
-            </Form.Item>
-            <Form.Item>
-              <Button type="primary" onClick={submitLogin}>
-                Login/Register
-              </Button>
-            </Form.Item>
-          </Form>
+          { !isLoggedIn() && 
+            <Form form={form} layout="inline">
+              <Form.Item name="email" rules={[{required: true, message: 'Please input email!'}]}>
+                <Input placeholder="email"/>
+              </Form.Item>
+              <Form.Item name="password">
+                <Input.Password placeholder="password"/>
+              </Form.Item>
+              <Form.Item>
+                <Button type="primary" onClick={submitLogin}>
+                  Login/Register
+                </Button>
+              </Form.Item>
+            </Form>
+          }
+          {
+            isLoggedIn() && 
+            <Button type="primary">
+              Logout
+            </Button>
+          }
         </Col>
       </Row>
     </Header>

@@ -4,7 +4,7 @@ export const SET_USER_LOADING = 'SET_USER_LOADING';
 
 const INITIAL_STATE = {
   loading: true,
-  data: [],
+  data: {},
 }
 
 export default function (state = INITIAL_STATE, action = {}) {
@@ -18,4 +18,4 @@ export default function (state = INITIAL_STATE, action = {}) {
   }
 }
 
-export const login = ({username, password}) => ({ type: LOG_IN, username, password });
+export const login = ({email, password}) => ({ type: LOG_IN, email, password });
