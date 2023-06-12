@@ -23,11 +23,13 @@ export default function(){
     <Header>
       <Row align="middle">
         <Col span={3}>
-          <Image height={"100%"} preview={false} src="/logo.png"/>
+          <a href="/">
+            <Image height={"100%"} preview={false} src="/logo.png"/>
+          </a>
         </Col>
 
+        { !isLoggedIn() && 
         <Col offset={10} span={10}>
-          { !isLoggedIn() && 
             <Form form={form} layout="inline">
               <Form.Item name="email" rules={[{required: true, message: 'Please input email!'}]}>
                 <Input placeholder="email"/>
@@ -41,7 +43,9 @@ export default function(){
                 </Button>
               </Form.Item>
             </Form>
-          }
+        </Col>
+        }
+        <Col offset={16} span={4}>
           {
             isLoggedIn() && 
             <Button type="primary">

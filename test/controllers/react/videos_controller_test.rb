@@ -2,10 +2,22 @@ require "test_helper"
 
 class ReactVideosControllerTest < ActionDispatch::IntegrationTest
   def set_request_cookie
-    user = User.first
     cookie_jar = ActionDispatch::Request.new(Rails.application.env_config.deep_dup).cookie_jar
-    cookie_jar.encrypted["mytube_user"] = {value: user.email, expires: 7.days}
+    cookie_jar.encrypted["mytube_user"] = {value: users(:one).email, expires: 7.days}
     cookies["mytube_user"] = cookie_jar["mytube_user"]
+  end
+
+  test "should allow not logged in user" do
+    get react_videos_index_url, params: { page: 1 }
+    assert_response :success
+  end
+
+  test "should return a list of videos" do
+    get react_videos_index_url, params: { page: 1 }
+
+    response_body = JSON.parse @response.body
+    assert_response :success
+    assert_equal(videos.length, response_body["videos"].count)
   end
 
   test "should only allow logged in user" do
