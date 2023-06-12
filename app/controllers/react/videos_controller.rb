@@ -3,7 +3,7 @@ class React::VideosController < ApplicationController
   before_action :verify_url, only: :share
 
   def index
-    videos = service.list
+    videos = service.list params[:page].to_i
     render json: { videos: videos }, status: :ok
   end
 

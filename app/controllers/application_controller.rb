@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   def authenticate_user
     email = cookies.encrypted["mytube_user"]
     @current_user ||= User.find_by_email email
-    if @current_user.nil? && !allowed_url.include?(request.fullpath)
+    if @current_user.nil? && !allowed_url.include?(request.path)
       redirect_to "", status: 301
     end
   end
