@@ -8,12 +8,12 @@ class ReactVideosControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should allow not logged in user" do
-    get react_videos_index_url, params: { page: 1 }
+    get react_videos_index_url, params: { page: 0 }
     assert_response :success
   end
 
   test "should return a list of videos" do
-    get react_videos_index_url, params: { page: 1 }
+    get react_videos_index_url, params: { page: 0 }
 
     response_body = JSON.parse @response.body
     assert_response :success

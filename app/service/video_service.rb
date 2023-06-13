@@ -10,6 +10,7 @@ class VideoService
     video.embedded_url = embedded_url url
     video.user_id = @user.id
     video.save!
+    broadcast_to_user
   end
 
   def list page
@@ -17,5 +18,9 @@ class VideoService
                 .select(:id, :embedded_url, "users.email")
                 .offset(page*per_page)
                 .limit(per_page)
+  end
+
+  def broadcast_to_user
+    ActionCable.server.broadcast("noti_VideoChannel", {email: @user.email})
   end
 end

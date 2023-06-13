@@ -1,4 +1,5 @@
 export const LOG_IN = 'LOG_IN';
+export const ME = 'ME';
 export const SET_USER = 'SET_USER';
 export const SET_USER_LOADING = 'SET_USER_LOADING';
 
@@ -19,3 +20,4 @@ export default function (state = INITIAL_STATE, action = {}) {
 }
 
 export const login = ({email, password}) => ({ type: LOG_IN, email, password });
+export const me = () => ({ type: ME });
