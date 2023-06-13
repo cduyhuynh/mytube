@@ -6,6 +6,7 @@
   "dependencies": {
     "@babel/core": "^7.22.5",
     "@babel/preset-react": "^7.22.5",
+    "@rails/actioncable": "^7.0.5",
     "@rails/webpacker": "5.4.4",
     "antd": "^5.4.7",
     "axios": "^1.4.0",

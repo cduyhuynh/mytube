@@ -2,6 +2,7 @@ version: '3.8'
 x-mytube: &webapp
   build: .
   depends_on:
+    - redis
     - postgresql
   volumes:
     - .:/webapp
@@ -13,6 +14,7 @@ x-mytube: &webapp
     DB_HOST: postgresql
     NODE_OPTIONS: --openssl-legacy-provider
     NODE_ENV: development
+    REDIS_URL: redis://redis:6379
 
 services:
   rails:
@@ -22,6 +24,15 @@ services:
       - 3035:3035
     container_name: mytube
     <<: *webapp
+  redis:
+    image: redis:6.2
+    container_name: redis
+    ports:
+      - 6379:6379
+    volumes:
+      - '~/.data/redis:/data'
+    networks:
+      - mytube_default
   postgresql:
     image: postgres:15.2
     volumes:
