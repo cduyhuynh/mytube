@@ -1,0 +1,53 @@
+version: '3.8'
+x-mytube: &webapp
+  build: .
+  depends_on:
+    - redis
+    - postgresql
+  volumes:
+    - .:/webapp
+  stdin_open: true
+  tty: true
+  networks:
+    - mytube_default
+  environment:
+    DB_HOST: postgresql
+    NODE_OPTIONS: --openssl-legacy-provider
+    NODE_ENV: development
+    REDIS_URL: redis://redis:6379
+
+services:
+  rails:
+    command: sh -c "bundle install && rm -rf tmp/pids && rails s -b 0.0.0.0"
+    ports:
+      - 3000:3000
+      - 3035:3035
+    container_name: mytube
+    <<: *webapp
+  redis:
+    image: redis:6.2
+    container_name: redis
+    ports:
+      - 6379:6379
+    volumes:
+      - '~/.data/redis:/data'
+    networks:
+      - mytube_default
+  postgresql:
+    image: postgres:15.2
+    volumes:
+      - ./data:/var/lib/postgresql/data
+      - '.:/share'
+    environment:
+      POSTGRES_HOST_AUTH_METHOD: trust
+    ports:
+      - 5432:5432
+    container_name: postgresql_mytube
+    restart: 'always'
+    networks:
+      - mytube_default
+
+networks:
+  mytube_default:
+    driver: bridge
+    name: mytube_default

@@ -1,0 +1,11 @@
+*
+!Dockerfile
+!Gemfile
+!Gemfile.lock
+!package.json
+!package-lock.json
+!id_rsa
+!test/performance/benchmark/*.patch
+!vendor/opro
+node_modules
+tmp/cache
