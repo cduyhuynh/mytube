@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Layout, Form, Image, Input, Row, Col, Button } from 'antd';
-import { login } from './redux';
+import { login, me } from './redux';
 
 const { Header } = Layout;
 
@@ -10,12 +10,17 @@ export default function(){
   const { data, loading } = useSelector((state) => state.user);
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    dispatch(me());
+  }, []);
+
   const submitLogin = (e) => {
     const values = form.getFieldsValue();
     dispatch(login(values));
   }
 
   const isLoggedIn = () => {
+    if(data == undefined) return false;
     return Object.keys(data).length > 0;
   }
 
@@ -48,9 +53,11 @@ export default function(){
         <Col offset={16} span={4}>
           {
             isLoggedIn() && 
-            <Button type="primary">
-              Logout
-            </Button>
+            <a href="/share">
+              <Button type="primary">
+                Share a video
+              </Button>
+            </a>
           }
         </Col>
       </Row>

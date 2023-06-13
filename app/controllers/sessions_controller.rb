@@ -9,7 +9,12 @@ class SessionsController < Devise::SessionsController
     render json: {message: @message, user: {email: @user.email}}, status: :ok
   end
 
-  def destroy
+  def me
+    if current_user
+      render json: { user: {email: current_user.email }}, status: :ok
+    else
+      render json: { message: "Unauthorized" }, status: :unauthorized
+    end
   end
 
   private
