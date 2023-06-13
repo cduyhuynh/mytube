@@ -10,7 +10,7 @@ class VideosHelperTest < ActionDispatch::IntegrationTest
 
   test "should return false for invalid url" do
     url = "https://mytu.be/watch?v=5y_KJAg8bHI"
-    assert !url.match?(valid_url_pattern)
+    refute url.match?(valid_url_pattern)
   end
 
   test "should return embedded url" do
